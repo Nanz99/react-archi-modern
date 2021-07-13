@@ -1,0 +1,18 @@
+.btn-empty{
+   display: block;
+   margin: 0 auto;
+   text-align: center;
+   padding: 8px 26px;
+   width: 200px;
+   border: 2px solid #000;
+   background: transparent;
+   transition: all 0.3s ease-in-out;
+   color: #000;
+   text-transform: uppercase;
+   border-radius: 0;
+   &:hover{
+      background: var(--color-main);
+    color: #fff;
+    border-color: var(--color-main);
+   }
+}

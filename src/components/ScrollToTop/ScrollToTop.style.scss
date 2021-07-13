@@ -1,0 +1,29 @@
+.backtotop-btn {
+   width: 36px;
+   height: 36px;
+   line-height: 20px;
+   background: var(--color-main) none repeat scroll 0 0;
+   text-align: center;
+   position: fixed;
+   right: 20px;
+   border: 3px double #111;
+   bottom: 20px;
+   z-index: 100;
+   cursor: pointer;
+   color: #111;
+   font-size: 22px;
+   transform: rotate(0deg);
+   transition: all 0.5s ease-in-out;
+   svg {
+      transform: rotate(0deg);
+   }
+   &:hover {
+      background: #111;
+      color: #fff;
+      transform: rotate(45deg);
+      border-color: #fff;
+      svg {
+         transform: rotate(-45deg);
+      }
+   }
+}

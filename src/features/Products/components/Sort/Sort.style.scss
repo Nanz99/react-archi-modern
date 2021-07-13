@@ -1,0 +1,48 @@
+.sort__container {
+   display: grid;
+   grid-template-columns: auto auto 1fr auto;
+   align-items: center;
+   margin-bottom: 2rem;
+   column-gap: 2rem;
+   .btn__conatiner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0.5rem;
+      button {
+         background: transparent;
+         border: 1px solid var(--clr-black);
+         color: var(--clr-black);
+         width: 2rem;
+         border-radius: var(--radius);
+         height: 2rem;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         cursor: pointer;
+      }
+      button.active{
+         background: var(--color-main);
+      }
+   }
+   p {
+      text-transform: capitalize;
+      margin-bottom: 0;
+      color: var(--clr-grey-3);
+   }
+   .sort__input {
+      font-size: 1rem;
+      text-transform: capitalize;
+      padding: 0.25rem 0.5rem;
+      margin-left: 10px;
+      border-radius: 0;
+      background: var(--color-main);
+      cursor: pointer;
+      &:focus{
+         outline: none;
+      }     
+    }
+    label {
+      font-size: 1rem;
+      text-transform: capitalize;
+    }
+}

@@ -1,0 +1,20 @@
+.footer__container {
+   display: flex;
+   justify-content: center;
+   background: #111;
+   height: 3rem;
+   line-height: 3rem;
+   align-items: center;
+   position: relative;
+   z-index: 10;
+
+   h4 {
+      font-size: 15px;
+      letter-spacing: 1px;
+      margin: 0;
+      color: #ddd;
+      span {
+         color: var(--color-main);
+      }
+   }
+}

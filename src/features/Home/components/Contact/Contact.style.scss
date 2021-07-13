@@ -1,0 +1,35 @@
+.contact__container {
+   position: relative;
+   padding: 3rem 0;
+   width: 100%;
+   background: var(--color-main);
+   .contact__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      margin: auto;
+      h2 {
+         text-align: left;
+         color: #222222;
+         font-size: 25px;
+      }
+      .btn-contact {
+         border: 1px solid #111;
+         border-radius: 0;
+         color: #111;
+         font-weight: normal;
+         padding: 10px 30px 10px 30px;
+         letter-spacing: 1px;
+         &:hover{
+            background: #111;
+            color: #fff;
+         }
+      }
+   }
+   @media (max-width:840px) {
+      .contact__content{
+         flex-direction: column;
+      }
+   }
+}

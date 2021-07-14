@@ -4,8 +4,7 @@ import GridView from "../GridView/GridView"
 import ListView from "../ListView/ListView"
 
 function ProductList() {
-   const gridView = useSelector(state => state.filters.gridView)
-   const filteredProducts = useSelector(state => state.filters.filteredProducts)
+   const { gridView, filteredProducts } = useSelector(state => state.filters)
    if (!gridView) return <ListView filteredProducts={filteredProducts} />
    return <GridView filteredProducts={filteredProducts} />
 }

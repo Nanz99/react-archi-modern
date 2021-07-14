@@ -11,13 +11,15 @@
    }
    .search-input {
       padding: 0.5rem;
-      background: var(--clr-grey-10);
-      border-radius: var(--radius);
+      background: #ddd;
+      border-radius: 0;
       border-color: transparent;
       letter-spacing: var(--spacing);
       width: 100%;
+      border: 1px solid ;
       &:focus {
          outline: none;
+         border-color: var(--color-main);
       }
    }
    .search-input::placeholder {

@@ -20,7 +20,7 @@
          justify-content: center;
          cursor: pointer;
       }
-      button.active{
+      button.active {
          background: var(--color-main);
       }
    }
@@ -33,16 +33,16 @@
       font-size: 1rem;
       text-transform: capitalize;
       padding: 0.25rem 0.5rem;
-      margin-left: 10px;
       border-radius: 0;
       background: var(--color-main);
       cursor: pointer;
-      &:focus{
+      &:focus {
          outline: none;
-      }     
-    }
-    label {
+      }
+   }
+   label {
+      margin-right: 10px;
       font-size: 1rem;
       text-transform: capitalize;
-    }
+   }
 }

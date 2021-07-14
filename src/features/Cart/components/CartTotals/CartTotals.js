@@ -24,7 +24,7 @@ function CartTotals() {
                </h4>
             </article>
             {myUser ? (
-               <Link to="/checkout" className="btn">
+               <Link to="/" className="btn">
                   proceed to checkout
                </Link>
             ) : (

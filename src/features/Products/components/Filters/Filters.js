@@ -48,7 +48,7 @@ function Filters() {
                      type="text"
                      name="text"
                      className="search-input"
-                     placeholder="search"
+                     placeholder="search ..."
                      value={text}
                      onChange={handleUpdateFilters}
                   />

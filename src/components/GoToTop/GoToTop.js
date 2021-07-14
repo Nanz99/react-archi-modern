@@ -1,13 +1,12 @@
-import React from "react"
+import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
-function GoToTop() {
+export default function GoToTop() {
    const { pathname } = useLocation()
 
-   React.useEffect(() => {
+   useEffect(() => {
       window.scrollTo(0, 0)
    }, [pathname])
 
    return null
 }
-export default React.memo(GoToTop)

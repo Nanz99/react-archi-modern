@@ -7,8 +7,8 @@ export default function About() {
    return (
       <main>
          <Breadcrumb title="About" bgImg={aboutImg}/>
-         <AboutContent/>
          <AboutCounter/>
+         <AboutContent/>
       </main>
    )
 }

@@ -20,7 +20,8 @@ import {
 import { totalsCountCart } from "features/Cart/CartSlice"
 // import ContactUs from "features/Contact/page/ContactUs"
 import Loading from "components/Loading/Loading"
-import GoToTop from "components/GotoTop/GoToTop"
+import GoToTop from "components/GoToTop/GoToTop"
+
 
 // Lazy page
 
@@ -63,6 +64,7 @@ function App() {
    }, [dispatch, cart])
    return (
       <BrowserRouter>
+         <GoToTop />
          <Navbar />
          <Sidebar />
          <Suspense fallback={<Loading />}>
@@ -82,7 +84,6 @@ function App() {
          </Suspense>
          <Footer />
          <ScrollToTop showBelow={250} />
-         <GoToTop />
       </BrowserRouter>
    )
 }

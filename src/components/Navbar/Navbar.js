@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import "./Navbar.style.scss"
 import logo from "../../assets/images/logoarchi.png"
 import { IoIosLogOut } from "react-icons/io"
@@ -14,6 +14,7 @@ import {
    openSticky
 } from "features/Products/productsSlice"
 import { links } from "constants/links"
+
 function Navbar() {
    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
    const isUser = isAuthenticated && user
@@ -56,10 +57,28 @@ function Navbar() {
                </button>
             </div>
             <ul className="nav-links">
+               {/* {links.map(({ id, text, url }) => {
+                  return (
+                     <ActiveLink
+                        key={id}
+                        activeOnlyWhenExact={true}
+                        to={url}
+                        label={text}
+                     />
+                  )
+               })} */}
                {links.map(({ id, text, url }) => {
                   return (
                      <li key={id}>
-                        <Link to={url}>{text}</Link>
+                        <NavLink
+                           to={url}
+                           exact
+                           activeStyle={{
+                              color: "var(--color-main)"
+                           }}
+                        >
+                           {text}
+                        </NavLink>
                      </li>
                   )
                })}

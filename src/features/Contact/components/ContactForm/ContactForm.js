@@ -56,7 +56,7 @@ function ContactForm() {
                <address>
                   <div>97 Trần Thái Tông, P.15, Tân Bình, Hồ Chí Minh</div>
                   <div>
-                     <strong>Phone:</strong>(208) 333 9296
+                     <strong>Phone:</strong>037 519 74640{" "}
                   </div>
                   <div>
                      <strong>Facebook</strong>
@@ -73,8 +73,10 @@ function ContactForm() {
                      <a href="https://gmail.com">iamanhnhut.0101@gmail.com</a>
                   </div>
                   <div>
-                     <strong>Web</strong>
-                     <a href="https://youtube.com">http://anhnhut.com</a>
+                     <strong>Web: </strong>
+                     <a href="https://nguyenanhnhut-projects.netlify.app">
+                        https://nguyenanhnhut-projects.netlify.app
+                     </a>
                   </div>
                   <div>
                      <strong>Open</strong>Sunday – Friday 08:00 – 18:00

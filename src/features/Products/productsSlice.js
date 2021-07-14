@@ -1,19 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { getProductsData, getSingleProductData } from "apis/api"
 
 export const getProducts = createAsyncThunk(
    "products/getProducst",
    async () => {
-      const response = await axios.get(
-         "https://course-api.com/react-store-products"
-      )
+      const response = await getProductsData()
       return response.data
    }
 )
 export const getSingleProduct = createAsyncThunk(
    "products/getSingleProduct",
    async url => {
-      const response = await axios.get(url)
+      const response = await getSingleProductData(url)
       return response.data
    }
 )

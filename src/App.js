@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 // import About from "features/About/page/About"
 // import Home from "features/Home/page/Home"
 // import Products from "features/Products/page/Products"
-import AuthWrapper from "features/Auth/pages/AuthWrapper"
 import Sidebar from "components/Sidebar/Sidebar"
 import Footer from "components/Footer/Footer"
 import ScrollToTop from "components/ScrollToTop/ScrollToTop"
@@ -21,8 +20,10 @@ import {
 import { totalsCountCart } from "features/Cart/CartSlice"
 // import ContactUs from "features/Contact/page/ContactUs"
 import Loading from "components/Loading/Loading"
+import GoToTop from "components/GotoTop/GoToTop"
 
 // Lazy page
+
 const Home = React.lazy(() => import("./features/Home/page/Home"))
 const About = React.lazy(() => import("./features/About/page/About"))
 const Products = React.lazy(() => import("./features/Products/page/Products"))
@@ -61,29 +62,28 @@ function App() {
       dispatch(totalsCountCart())
    }, [dispatch, cart])
    return (
-      <AuthWrapper>
-         <BrowserRouter>
-            <Navbar />
-            <Sidebar />
-            <Suspense fallback={<Loading/>}>
-               <Switch>
-                  <Route exact path="/" component={Home}></Route>
-                  <Route exact path="/about" component={About}></Route>
-                  <Route exact path="/products" component={Products}></Route>
-                  <Route exact path="/contact-us" component={ContactUs}></Route>
-                  <Route path="/cart" component={Cart}></Route>
-                  <Route
-                     exact
-                     path="/products/:id"
-                     component={SingleProduct}
-                  ></Route>
-                  <Route exact path="*" component={Error}></Route>
-               </Switch>
-            </Suspense>
-            <Footer />
-            <ScrollToTop showBelow={250} />
-         </BrowserRouter>
-      </AuthWrapper>
+      <BrowserRouter>
+         <Navbar />
+         <Sidebar />
+         <Suspense fallback={<Loading />}>
+            <Switch>
+               <Route exact path="/" component={Home}></Route>
+               <Route exact path="/about" component={About}></Route>
+               <Route exact path="/products" component={Products}></Route>
+               <Route exact path="/contact-us" component={ContactUs}></Route>
+               <Route path="/cart" component={Cart}></Route>
+               <Route
+                  exact
+                  path="/products/:id"
+                  component={SingleProduct}
+               ></Route>
+               <Route exact path="*" component={Error}></Route>
+            </Switch>
+         </Suspense>
+         <Footer />
+         <ScrollToTop showBelow={250} />
+         <GoToTop />
+      </BrowserRouter>
    )
 }
 

@@ -1,0 +1,2 @@
+(this["webpackJsonpmy-app"]=this["webpackJsonpmy-app"]||[]).push([[11],{160:function(e,c,n){},165:function(e,c,n){"use strict";n.r(c);var t=n(1),a=n.n(t),s=n(14),r=(n(160),n(2)),o=function(){return Object(r.jsx)("main",{className:"page-100 error__container",children:Object(r.jsxs)("section",{children:[Object(r.jsx)("h1",{children:"404"}),Object(r.jsx)("h3",{children:"Sorry, the page you tried cannot be found"}),Object(r.jsx)(s.b,{to:"/",className:"btn__backhome",children:"back home"})]})})};c.default=a.a.memo(o)}}]);
+//# sourceMappingURL=11.a9e8070e.chunk.js.map

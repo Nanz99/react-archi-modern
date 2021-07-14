@@ -1,9 +1,15 @@
-nav {
+.navbar {
    height: 5rem;
    display: flex;
    align-items: center;
    background: transparent;
    justify-content: center;
+   background: rgba(0, 0, 0, 0.5);
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+
    z-index: 10;
    .nav-center {
       width: 90vw;
@@ -20,19 +26,27 @@ nav {
       }
    }
    .nav-toggle {
-      background: transparent;
-      border: transparent;
-      color: var(--clr-primary-5);
+      background: #606060;
+      height: 38px;
+      width: 38px;
+      line-height: 22px;
+      font-size: 22px;
+      color: #fff;
+      transition: all 0.3s ease;
       cursor: pointer;
-    
-      svg {
-         font-size: 2rem;
+      border: none;
+      &:hover {
+         color: #111;
+         background: #fff;
+      }
+      &:focus {
+         outline: none;
       }
    }
    .nav-links {
       display: none;
    }
-   .cart-btn-wrapper{
+   .cart-btn-wrapper {
       display: none;
    }
    @media (min-width: 992px) {
@@ -72,11 +86,11 @@ nav {
          width: 160px;
          color: #fff;
          justify-content: center;
-         .account{
+         .account {
             display: flex;
             justify-content: center;
             align-items: center;
-            .img-avatar{
+            .img-avatar {
                width: 30px;
                height: 30px;
                border-radius: 50%;
@@ -84,7 +98,7 @@ nav {
                margin-left: 50px;
             }
          }
-         
+
          .cart-btn {
             color: #fff;
             font-size: 1.5rem;
@@ -138,12 +152,20 @@ nav {
    }
 }
 
-.navbar {
+.navbar-sticky {
    position: fixed;
    top: 0;
    left: 0;
    width: 100%;
    padding: 0.75rem 2rem;
-   background: rgba(0,0,0,0.5);
+   background: #111;
    z-index: 999;
- }
+   height: 4.5rem;
+   transition: all 0.4s ease-in-out;
+   border-bottom: solid 1px #333;
+   .nav-links {
+      li {
+         margin: 0.5rem 0.5rem 0;
+      }
+   }
+}

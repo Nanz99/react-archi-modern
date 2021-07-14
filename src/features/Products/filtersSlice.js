@@ -66,13 +66,16 @@ const filtersSlice = createSlice({
       },
       clearFilters: state => {
          return {
-            ...state.filters,
-            text: "",
-            company: "all",
-            category: "all",
-            color: "all",
-            price: state.filters.maxPrice,
-            shipping: false
+            ...state,
+            filters: {
+               ...state.filters,
+               text: "",
+               company: "all",
+               category: "all",
+               color: "all",
+               price: state.filters.maxPrice,
+               shipping: false
+            }
          }
       },
       updateFilters: (state, action) => {

@@ -17,7 +17,7 @@ export const links = [
   },
   {
     id: 4,
-    text: 'contact',
-    url: '/contact',
+    text: 'contact us',
+    url: '/contact-us',
   },
 ]

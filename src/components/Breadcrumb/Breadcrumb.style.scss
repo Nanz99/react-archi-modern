@@ -38,3 +38,26 @@
       }
    }
 }
+@media (max-width: 768px) {
+   .breadcrumb__container {
+      .breadcrumb__center {
+         h1 {
+            display: none;
+         }
+         p {
+            margin-top: 50px;
+            font-size: 22px;
+         }
+      }
+   }
+}
+@media (max-width: 630px) {
+   .breadcrumb__container {
+      .breadcrumb__center {
+         p {
+            margin-top: 15px;
+            font-size: 18px;
+         }
+      }
+   }
+}

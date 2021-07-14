@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import "./Navbar.style.scss"
 import logo from "../../assets/images/logoarchi.png"
@@ -8,15 +8,32 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import { FaBars } from "react-icons/fa"
 import { useAuth0 } from "@auth0/auth0-react"
 import { useDispatch, useSelector } from "react-redux"
-import { openSidebar } from "features/Products/productsSlice"
+import {
+   closeSticky,
+   openSidebar,
+   openSticky
+} from "features/Products/productsSlice"
 import { links } from "constants/links"
-export default function Navbar() {
+function Navbar() {
    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
    const isUser = isAuthenticated && user
    const dispatch = useDispatch()
    const { total_items } = useSelector(state => state.cart)
+   const { isSticky } = useSelector(state => state.products)
+
+   const handleSticky = () => {
+      if (window.pageYOffset > 150) {
+         dispatch(openSticky())
+      } else {
+         dispatch(closeSticky())
+      }
+   }
+   useEffect(() => {
+      window.addEventListener("scroll", handleSticky)
+      return () => window.removeEventListener("scroll", handleSticky)
+   })
    return (
-      <nav className="navbar">
+      <nav className={`navbar ${isSticky ? "navbar-sticky" : null}`}>
          <div className="nav-center">
             <div className="nav-header">
                <Link to="/">
@@ -87,3 +104,4 @@ export default function Navbar() {
       </nav>
    )
 }
+export default React.memo(Navbar)

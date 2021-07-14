@@ -11,7 +11,7 @@ import { links } from "constants/links"
 import { useDispatch, useSelector } from "react-redux"
 import { closeSidebar } from "features/Products/productsSlice"
 
-export default function Sidebar() {
+function Sidebar() {
    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
    const isUser = isAuthenticated && user
    const isSidebarOpen = useSelector(state => state.products.isSidebarOpen)
@@ -22,7 +22,15 @@ export default function Sidebar() {
             className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
          >
             <div className="sidebar-header">
-               <img src={logo} alt="Coding" className="logo" />
+               <img
+                  src={logo}
+                  alt="logo-img"
+                  style={{
+                     width: "140px",
+                     display: "block",
+                     marginLeft: "0px"
+                  }}
+               />
                <button
                   className="close-btn"
                   onClick={() => dispatch(closeSidebar())}
@@ -86,3 +94,5 @@ export default function Sidebar() {
       </div>
    )
 }
+
+export default React.memo(Sidebar)

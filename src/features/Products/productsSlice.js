@@ -27,7 +27,8 @@ const productsSlice = createSlice({
       featuredProducts: [],
       singleProduct_loading: false,
       singleProduct_error: false,
-      singleProduct: {}
+      singleProduct: {},
+      isSticky: false
    },
    reducers: {
       openSidebar(state) {
@@ -35,6 +36,12 @@ const productsSlice = createSlice({
       },
       closeSidebar(state) {
          state.isSidebarOpen = false
+      },
+      openSticky: state => {
+         state.isSticky = true
+      },
+      closeSticky: state => {
+         state.isSticky = false
       }
    },
    extraReducers: {
@@ -66,6 +73,6 @@ const productsSlice = createSlice({
    }
 })
 
-const { reducer, actions } = productsSlice
-export const { openSidebar, closeSidebar } = actions
-export default reducer
+export const { openSidebar, closeSidebar, openSticky, closeSticky } =
+   productsSlice.actions
+export default productsSlice.reducer

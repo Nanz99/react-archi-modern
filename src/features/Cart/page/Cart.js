@@ -4,7 +4,7 @@ import cartImg from "../../../assets/images/bread4.jpg"
 import './Cart.style.scss'
 import CartContent from "../components/CartContent/CartContent"
 
-export default function Cart() {
+function Cart() {
    return (
       <main>
          <Breadcrumb title="cart" bgImg={cartImg} />
@@ -14,3 +14,4 @@ export default function Cart() {
       </main>
    )
 }
+export default React.memo(Cart)

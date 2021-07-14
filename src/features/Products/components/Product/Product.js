@@ -7,7 +7,7 @@ import "./Product.style.scss"
 export default function Product({ image, name, id, price }) {
    return (
       <article className="product">
-         <div className="container">
+         <div className="product__container">
             <img src={image} alt={name} />
             <Link to={`/products/${id}`} className="link">
                <FaEye />

@@ -19,6 +19,7 @@ import {
 } from "features/Products/filtersSlice"
 import Cart from "features/Cart/page/Cart"
 import { totalsCountCart } from "features/Cart/CartSlice"
+import ContactUs from "features/Contact/page/ContactUs"
 function App() {
    const dispatch = useDispatch()
    const { sort, filters } = useSelector(state => state.filters)
@@ -52,6 +53,7 @@ function App() {
                <Route exact path="/" component={Home}></Route>
                <Route path="/about" component={About}></Route>
                <Route path="/cart" component={Cart}></Route>
+               <Route exact path="/contact-us" component={ContactUs}></Route>
                <Route exact path="/products" component={Products}></Route>
                <Route
                   exact

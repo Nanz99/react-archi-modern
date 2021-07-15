@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import "./Slider.style.scss"
-
 import slider1 from "../../../../assets/images/wide4.jpg"
 import slider2 from "../../../../assets/images/wide5.jpg"
 import slider3 from "../../../../assets/images/wide6.jpg"
@@ -64,6 +63,7 @@ const Slider = props => {
          <CarouselItem
             onExiting={() => setAnimating(true)}
             onExited={() => setAnimating(false)}
+            
             key={item.src}
          >
             <img src={item.src} alt={item.altText} />

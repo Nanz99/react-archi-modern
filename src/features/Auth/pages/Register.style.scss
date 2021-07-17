@@ -1,0 +1,31 @@
+.register__container {
+   position: relative;
+   background: #ddd;
+   z-index: 1010;
+   overflow: auto;
+   .register__wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+    
+      .form__register {
+         width: 380px;
+         margin: auto;
+         text-align: center;
+         padding: 40px;
+         background: #fff;
+         p{
+            margin: 0;
+         }
+         .avatar__input{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0;
+            background: #ddd;
+         }
+      }
+   }
+}

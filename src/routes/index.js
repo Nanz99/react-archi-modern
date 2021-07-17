@@ -30,7 +30,7 @@ function Routes() {
          <Suspense fallback={<Loading />}>
             <Switch>
                <Route path="/login" component={Login} />
-               <Route path="/register" component={Register} />
+               <Route exact path="/register" component={Register} />
                <Route exact path="/" component={Home}></Route>
                <Route exact path="/about" component={About}></Route>
                <Route exact path="/products" component={Products}></Route>

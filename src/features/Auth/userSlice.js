@@ -11,11 +11,24 @@ const usersSlice = createSlice({
       accounts: [],
       user_loading: false,
       user_error: "",
-
-      passWord: "",
-      email: ""
+      login: {
+         email: "",
+         passWord: ""
+      }
    },
-   reducers: {},
+   reducers: {
+      handleValue: (state, action) => {
+         const { email, passWord } = action.payload
+         return {
+            ...state,
+            login: {
+               ...state.login,
+              email: email,
+              passWord: passWord
+            }
+         }
+      }
+   },
    extraReducers: {
       [getListUsers.pending]: state => {
          state.user_loading = true
@@ -31,5 +44,5 @@ const usersSlice = createSlice({
    }
 })
 
-// export const {} = usersSlice.actions
+export const { handleValue } = usersSlice.actions
 export default usersSlice.reducer

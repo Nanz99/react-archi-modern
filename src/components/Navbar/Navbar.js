@@ -15,6 +15,7 @@ import { auth } from "firebase/config"
 
 import { Menu, Dropdown } from "antd"
 import Avatar from "antd/lib/avatar/avatar"
+import useFirestore from "./../../hooks/useFirestore"
 
 function Navbar() {
    const dispatch = useDispatch()
@@ -24,9 +25,31 @@ function Navbar() {
    const [islogin, setIslogin] = useState(false)
    const history = useHistory()
 
+   const { email, passWord } = useSelector(state => state.users.login)
+   const { docs } = useFirestore("users")
+   console.log({ email, passWord })
+   console.log(docs)
+   const getInfoUser = (email, passWord) => {
+      return docs.find(
+         item => item.email === email && item.password === passWord
+      )
+   }
+   const userInfo = getInfoUser(email, passWord)
+   useEffect(() => {
+      if (userInfo) {
+         setUser(userInfo)
+         setIslogin(true)
+      } else {
+         setUser({})
+         setIslogin(false)
+      }
+   }, [userInfo])
+
+   // console.log("userInfo", userInfo)
+   // console.log("user", user)
+   // console.log(islogin)
    useEffect(() => {
       const unSubScrised = auth.onAuthStateChanged(user => {
-         console.log(user);
          if (user) {
             const { displayName, email, uid, photoURL } = user
             setUser({ displayName, email, uid, photoURL })
@@ -134,11 +157,19 @@ function Navbar() {
                               className="acoount__avatar-name ant-dropdown-link"
                               onClick={e => e.preventDefault()}
                            >
-                              <Avatar src={user.photoURL} className="img-avatar">
-                              {user.photoURL ? '' : user.email.slice(0,1).toUpperCase()}
+                              <Avatar
+                                 src={user.photoURL || user.url}
+                                 className="img-avatar"
+                              >
+                                 {user.photoURL
+                                    ? ""
+                                    : user.email.slice(0, 1).toUpperCase()}
                               </Avatar>
                               <h5>
-                                 Hi, <span>{user.email.slice(0,-10)}</span>
+                                 Hi,{" "}
+                                 <span>
+                                    {user.fullname || user.email.slice(0, -10)}
+                                 </span>
                               </h5>
                            </div>
                         </Dropdown>

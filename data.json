@@ -1,0 +1,23 @@
+{
+   "cardType": "visa",
+   "cardNumber": "4242-4242-4242-4242",
+   "userName": "NguyenNhut",
+   "email": "iamanhnhut.0101@gmail.com",
+   "password": "P@ssWord123",
+   "avatar": [
+      {
+         "extension": ".jpg",
+         "name": "anh-avatar-dep.jpg",
+         "size": 31316,
+         "status": 2,
+         "progress": 0,
+         "uid": "8199cebd-cdd0-4ad6-9c40-e30db5b52fe0"
+      }
+   ],
+   "gender": "male",
+   "countryselected": "VietNam",
+   "fullName": "Nguyen Anh Nhut",
+   "cvc": "123",
+   "expireDate": "2020-01-01T17:00:00.000Z",
+   "cardHolder": "NGUYEN ANH NHUT"
+}

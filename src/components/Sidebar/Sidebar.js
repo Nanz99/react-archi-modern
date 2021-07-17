@@ -1,21 +1,65 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import "./Sidebar.style.scss"
 import { FaTimes } from "react-icons/fa"
 import { AiOutlineShoppingCart } from "react-icons/ai"
-import { FiUserPlus } from "react-icons/fi"
-import { IoIosLogOut } from "react-icons/io"
+import { Menu, Dropdown } from "antd"
 import logo from "../../assets/images/logoarchi.png"
-import { Link } from "react-router-dom"
-import { useAuth0 } from "@auth0/auth0-react"
+import { Link, useHistory } from "react-router-dom"
 import { links } from "constants/links"
 import { useDispatch, useSelector } from "react-redux"
 import { closeSidebar } from "features/Products/productsSlice"
+import { auth } from "firebase/config"
 
 function Sidebar() {
-   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
-   const isUser = isAuthenticated && user
+   const [user, setUser] = useState({})
+   const [islogin, setIslogin] = useState(true)
    const isSidebarOpen = useSelector(state => state.products.isSidebarOpen)
+   const history = useHistory()
    const dispatch = useDispatch()
+
+   useEffect(() => {
+      const unSubScrised = auth.onAuthStateChanged(user => {
+         if (user) {
+            const { displayName, email, uid, photoURL } = user
+            setUser({ displayName, email, uid, photoURL })
+            history.push("/")
+            setIslogin(true)
+            return
+         }
+         setIslogin(false)
+         setUser({})
+         history.push("/")
+      })
+
+      return () => {
+         unSubScrised()
+      }
+   }, [history])
+
+   const acount = (
+      <Menu>
+         <Menu.Item key="0" disabled>
+            <a href="https://www.youtube.com">Account Info</a>
+         </Menu.Item>
+         <Menu.Item key="1" disabled>
+            <a href="https://www.youtube.com">Order</a>
+         </Menu.Item>
+         <Menu.Divider />
+         <Menu.Item key="3">
+            <button
+               type="button"
+               className="auth-logout__btn"
+               onClick={() => {
+                  setUser({})
+                  setIslogin(false)
+                  auth.signOut()
+               }}
+            >
+               Sign Out
+            </button>
+         </Menu.Item>
+      </Menu>
+   )
    return (
       <div className="sidebar-container">
          <aside
@@ -62,31 +106,30 @@ function Sidebar() {
                   </span>
                </Link>
                <div className="account">
-                  {isUser && user.picture && (
-                     <img
-                        src={user.picture}
-                        alt={user.picture}
-                        className="img-avatar"
-                     />
-                  )}
-                  {isUser ? (
-                     <button
-                        type="button"
-                        className="auth-btn"
-                        onClick={() => {
-                           logout({ returnTo: window.location.origin })
-                        }}
-                     >
-                        <IoIosLogOut />
-                     </button>
+                  {islogin < 1 ? (
+                     <Link to="/login">
+                        <button type="button" className="auth-btn">
+                           Sign in
+                        </button>
+                     </Link>
                   ) : (
-                     <button
-                        type="button"
-                        onClick={loginWithRedirect}
-                        className="auth-btn"
-                     >
-                        <FiUserPlus />
-                     </button>
+                     <div className="account-info">
+                        <Dropdown overlay={acount} trigger={["click"]}>
+                           <div
+                              className="acoount__avatar-name ant-dropdown-link"
+                              onClick={e => e.preventDefault()}
+                           >
+                              <img
+                                 src={user.photoURL}
+                                 alt={user.displayName}
+                                 className="img-avatar"
+                              />
+                              <h5>
+                                 Hi, <span>{user.displayName}</span>
+                              </h5>
+                           </div>
+                        </Dropdown>
+                     </div>
                   )}
                </div>
             </div>

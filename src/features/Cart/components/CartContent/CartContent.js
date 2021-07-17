@@ -23,7 +23,7 @@ function CartContent() {
       )
    }
    return (
-      <div className="section section-center container">
+      <div className="section section-center">
          <CartColumn />
          {cart.map(item => {
             return <CartItem key={item.id} {...item} />

@@ -1,12 +1,9 @@
-import React, { useEffect } from "react"
-import { Link, NavLink } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Link, NavLink, useHistory } from "react-router-dom"
 import "./Navbar.style.scss"
 import logo from "../../assets/images/logoarchi.png"
-import { IoIosLogOut } from "react-icons/io"
-import { FiUserPlus } from "react-icons/fi"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { FaBars } from "react-icons/fa"
-import { useAuth0 } from "@auth0/auth0-react"
 import { useDispatch, useSelector } from "react-redux"
 import {
    closeSticky,
@@ -14,13 +11,38 @@ import {
    openSticky
 } from "features/Products/productsSlice"
 import { links } from "constants/links"
+import { auth } from "firebase/config"
+
+import { Menu, Dropdown } from "antd"
+import Avatar from "antd/lib/avatar/avatar"
 
 function Navbar() {
-   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
-   const isUser = isAuthenticated && user
    const dispatch = useDispatch()
    const { total_items } = useSelector(state => state.cart)
    const { isSticky } = useSelector(state => state.products)
+   const [user, setUser] = useState({})
+   const [islogin, setIslogin] = useState(false)
+   const history = useHistory()
+
+   useEffect(() => {
+      const unSubScrised = auth.onAuthStateChanged(user => {
+         console.log(user);
+         if (user) {
+            const { displayName, email, uid, photoURL } = user
+            setUser({ displayName, email, uid, photoURL })
+            history.push("/")
+            setIslogin(true)
+            return
+         }
+         setIslogin(false)
+         setUser({})
+         history.push("/")
+      })
+
+      return () => {
+         unSubScrised()
+      }
+   }, [history])
 
    const handleSticky = () => {
       if (window.pageYOffset > 150) {
@@ -33,6 +55,30 @@ function Navbar() {
       window.addEventListener("scroll", handleSticky)
       return () => window.removeEventListener("scroll", handleSticky)
    })
+   const acount = (
+      <Menu>
+         <Menu.Item key="0" disabled>
+            <a href="https://www.youtube.com">Account Info</a>
+         </Menu.Item>
+         <Menu.Item key="1" disabled>
+            <a href="https://www.youtube.com">Order</a>
+         </Menu.Item>
+         <Menu.Divider />
+         <Menu.Item key="3">
+            <button
+               type="button"
+               className="auth-logout__btn"
+               onClick={() => {
+                  setUser({})
+                  setIslogin(false)
+                  auth.signOut()
+               }}
+            >
+               Sign Out
+            </button>
+         </Menu.Item>
+      </Menu>
+   )
    return (
       <nav className={`navbar ${isSticky ? "navbar-sticky" : null}`}>
          <div className="nav-center">
@@ -57,16 +103,6 @@ function Navbar() {
                </button>
             </div>
             <ul className="nav-links">
-               {/* {links.map(({ id, text, url }) => {
-                  return (
-                     <ActiveLink
-                        key={id}
-                        activeOnlyWhenExact={true}
-                        to={url}
-                        label={text}
-                     />
-                  )
-               })} */}
                {links.map(({ id, text, url }) => {
                   return (
                      <li key={id}>
@@ -91,31 +127,28 @@ function Navbar() {
                   </span>
                </Link>
                <div className="account">
-                  {isUser && user.picture && (
-                     <img
-                        src={user.picture}
-                        alt={user.picture}
-                        className="img-avatar"
-                     />
-                  )}
-                  {isUser ? (
-                     <button
-                        type="button"
-                        className="auth-btn"
-                        onClick={() => {
-                           logout({ returnTo: window.location.origin })
-                        }}
-                     >
-                        <IoIosLogOut />
-                     </button>
+                  {islogin ? (
+                     <div className="account-info">
+                        <Dropdown overlay={acount} trigger={["click"]}>
+                           <div
+                              className="acoount__avatar-name ant-dropdown-link"
+                              onClick={e => e.preventDefault()}
+                           >
+                              <Avatar src={user.photoURL} className="img-avatar">
+                              {user.photoURL ? '' : user.email.slice(0,1).toUpperCase()}
+                              </Avatar>
+                              <h5>
+                                 Hi, <span>{user.email.slice(0,-10)}</span>
+                              </h5>
+                           </div>
+                        </Dropdown>
+                     </div>
                   ) : (
-                     <button
-                        type="button"
-                        onClick={loginWithRedirect}
-                        className="auth-btn"
-                     >
-                        <FiUserPlus />
-                     </button>
+                     <Link to="/login">
+                        <button type="button" className="auth-btn">
+                           Sign in
+                        </button>
+                     </Link>
                   )}
                </div>
             </div>

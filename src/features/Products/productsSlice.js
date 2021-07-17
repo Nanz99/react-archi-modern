@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { getProductsData, getSingleProductData } from "apis/api"
 
 export const getProducts = createAsyncThunk(
-   "products/getProducst",
+   "products/getProducts",
    async () => {
       const response = await getProductsData()
       return response.data

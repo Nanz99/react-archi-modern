@@ -9,22 +9,55 @@
       align-items: center;
       height: 100vh;
       width: 100%;
-    
+
       .form__register {
          width: 380px;
          margin: auto;
          text-align: center;
          padding: 40px;
          background: #fff;
-         p{
-            margin: 0;
+         input{
+            padding: 8px 14px;
+            display: block;
+            border-radius: 0;
          }
-         .avatar__input{
+         p {
+            margin: 0;
+          
+         }
+         .error{
+            color: red;
+            display: block;
+            text-align: left;
+            font-size: 14px;
+         }
+         .avatar__input {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-radius: 0;
             background: #ddd;
+            span {
+               width: 30px;
+               height: 30px;
+               border: 1px solid #111;
+               border-radius: 50%;
+               line-height: 30px;
+               color: #111;
+               font-weight: bold;
+               display: block;
+               position: relative;
+               cursor: pointer;
+               input {
+                  height: 40px;
+                  width: 40px;
+                  opacity: 0;
+                  cursor: pointer;
+                  position: absolute;
+                  top: -14px;
+                  right: -8px;
+               }
+            }
          }
       }
    }

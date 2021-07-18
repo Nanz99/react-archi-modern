@@ -5,10 +5,11 @@ import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
 import "./Login.style.scss"
 import { Link, useHistory } from "react-router-dom"
-import { useState } from "react"
 import useFirestore from "./../../../hooks/useFirestore"
 import { useDispatch } from "react-redux"
 import { handleValue } from "../userSlice"
+import useForm from "hooks/useForm"
+import validate from "../components/validate/validate"
 
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 const githubProvider = new firebase.auth.GithubAuthProvider()
@@ -16,24 +17,25 @@ const githubProvider = new firebase.auth.GithubAuthProvider()
 function Login() {
    const dispatch = useDispatch()
    const history = useHistory()
-   const [email, setEmail] = useState("")
-   const [passWord, setPassWord] = useState("")
 
+   const { handleChange, handleSubmit, values, errors } = useForm(validate)
    const { docs } = useFirestore("users")
 
-   const getOneUser = (email, passWord) => {
+   const getOneUser = (username, passWord) => {
       return docs.filter(
-         item => item.email === email && item.password === passWord
+         item => item.username === username && item.password === passWord
       )
    }
+   let username = values.username
+   let passWord = values.password
    useEffect(() => {
-      dispatch(handleValue({ email, passWord }))
-   }, [dispatch, email, passWord])
+      dispatch(handleValue({ username, passWord }))
+   }, [dispatch, username, passWord])
    const handleLogin = () => {
-      let item = { email, passWord }
-      const user = getOneUser(item.email, item.passWord)
-
-      if (user) {
+      let item = { username, passWord }
+      const user = getOneUser(item.username, item.passWord)
+      console.log("user", user)
+      if (user && user.length > 1) {
          history.push("/")
       }
    }
@@ -72,31 +74,27 @@ function Login() {
    return (
       <div className="login__container">
          <div className="form-container sign-in-container">
-            <form
-               action=""
-               className="form-login"
-               onSubmit={e => e.preventDefault()}
-            >
+            <form action="" className="form-login" onSubmit={handleSubmit}>
                <h4>Login Form</h4>
                <input
-                  name="email"
+                  name="username"
                   type="text"
-                  placeholder="Email"
-                  onChange={e => {
-                     setEmail(e.target.value)
-                  }}
+                  placeholder="Username"
+                  value={values.username}
+                  onChange={handleChange}
                />
+               {errors.username && <p className="error">{errors.username}</p>}
                <input
-                  nmae="password"
+                  name="password"
                   type="password"
                   placeholder="Password"
-                  onChange={e => {
-                     setPassWord(e.target.value)
-                  }}
+                  value={values.password}
+                  onChange={handleChange}
                />
+               {errors.passWord && <p className="error">{errors.password}</p>}
                <p>Forget password</p>
                <button
-                  type="button"
+                  type="submit"
                   className="btn-login"
                   onClick={handleLogin}
                >
@@ -115,7 +113,7 @@ function Login() {
                   </button>
                </div>
                <p>
-                  Are you ready accounts?
+                  Don't have an account?
                   <Link
                      to="/register"
                      style={{ color: "var(--color-main)", marginLeft: 5 }}

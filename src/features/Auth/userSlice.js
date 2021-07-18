@@ -12,18 +12,18 @@ const usersSlice = createSlice({
       user_loading: false,
       user_error: "",
       login: {
-         email: "",
+         username: "",
          passWord: ""
       }
    },
    reducers: {
       handleValue: (state, action) => {
-         const { email, passWord } = action.payload
+         const { username, passWord } = action.payload
          return {
             ...state,
             login: {
                ...state.login,
-              email: email,
+              username: username,
               passWord: passWord
             }
          }

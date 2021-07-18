@@ -16,6 +16,18 @@
 			text-decoration: none;
 			margin: 0;
 		}
+		.form-login {
+			input{
+				padding: 8px 14px;
+			}
+			.error {
+				text-align: left;
+				color: red;
+				display: block;
+				font-size: 14px;
+				width: 100%;
+			}
+		}
 	}
 }
 .close-btn {
@@ -67,7 +79,6 @@ button.ghost {
 	padding: 40px;
 	height: 100%;
 	text-align: center;
-	
 }
 
 input {

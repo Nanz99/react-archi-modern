@@ -25,16 +25,15 @@ function Navbar() {
    const [islogin, setIslogin] = useState(false)
    const history = useHistory()
 
-   const { email, passWord } = useSelector(state => state.users.login)
+   const { username, passWord } = useSelector(state => state.users.login)
    const { docs } = useFirestore("users")
-   console.log({ email, passWord })
-   console.log(docs)
-   const getInfoUser = (email, passWord) => {
+
+   const getInfoUser = (username, passWord) => {
       return docs.find(
-         item => item.email === email && item.password === passWord
+         item => item.username === username && item.password === passWord
       )
    }
-   const userInfo = getInfoUser(email, passWord)
+   const userInfo = getInfoUser(username, passWord)
    useEffect(() => {
       if (userInfo) {
          setUser(userInfo)

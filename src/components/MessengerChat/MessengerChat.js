@@ -4,7 +4,7 @@ import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 function MessengerChat() {
   return (
-    <div className="fixed bottom-5 right-5">
+    <div className="messenger-chat">
       <MessengerCustomerChat
         pageId="282762553571694"
         appId="656867348629654"

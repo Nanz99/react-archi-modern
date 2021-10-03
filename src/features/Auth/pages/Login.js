@@ -31,6 +31,7 @@ function Login() {
    useEffect(() => {
       dispatch(handleValue({ username, passWord }))
    }, [dispatch, username, passWord])
+   
    const handleLogin = () => {
       let item = { username, passWord }
       const user = getOneUser(item.username, item.passWord)
@@ -39,7 +40,6 @@ function Login() {
          history.push("/")
       }
    }
-
    //Login with Google
    const handleGoogleLogin = async () => {
       const { additionalUserInfo, user } = await auth.signInWithPopup(

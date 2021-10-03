@@ -6,6 +6,7 @@ import Loading from "components/Loading/Loading"
 import Footer from "components/Footer/Footer"
 import ScrollToTop from "components/ScrollToTop/ScrollToTop"
 import GoToTop from './../components/GoToTop/GoToTop';
+import MessengerChat from "components/MessengerChat/MessengerChat";
 
 const Home = React.lazy(() => import("../features/Home/page/Home"))
 const About = React.lazy(() => import("../features/About/page/About"))
@@ -45,7 +46,7 @@ function Routes() {
             </Switch>
             <Footer />
          </Suspense>
-
+         <MessengerChat />
          <ScrollToTop showBelow={250} />
       </BrowserRouter>
    )
